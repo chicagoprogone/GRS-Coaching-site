@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <script src="js/gate.js"></script>
+  <title>Contact — GRS Coaching</title>
+  <meta name="description" content="Book a free, confidential consultation with GRS Coaching.">
+  <link rel="canonical" href="https://www.grscoaching.com/contact.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GRS Coaching">
+  <meta property="og:title" content="Book a Conversation — GRS Coaching">
+  <meta property="og:description" content="Start with a free, confidential 30-minute consultation.">
+  <meta property="og:url" content="https://www.grscoaching.com/contact.html">
+  <meta property="og:image" content="https://www.grscoaching.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="theme-color" content="#0b0c0f">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="GRS Coaching home">
+        <span class="brand-word">GRS</span><span class="brand-dot"></span><span class="brand-sub">coaching</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="index.html">What we do</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn" aria-current="page">Book a conversation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Contact us</span>
+        <h1>Let's start with a <em>conversation.</em></h1>
+        <p class="lead">Tell us a little about where you are and what you're looking for. We'll reply personally within one business day.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <aside class="contact-aside reveal">
+          <h2>What happens <em>next</em></h2>
+          <p>We'll suggest a time for a free 30-minute call: a chance to talk through your situation and see whether coaching, and GRS, is the right fit. Everything you share is confidential.</p>
+          <ul class="contact-points">
+            <!-- EDIT: public email -->
+            <li><small>Email</small><a href="mailto:hello@grscoaching.com">hello@grscoaching.com</a></li>
+            <!-- EDIT: LinkedIn URL -->
+            <li><small>LinkedIn</small><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Message us on LinkedIn ↗</a></li>
+            <li><small>Response time</small><div>Within one business day</div></li>
+          </ul>
+        </aside>
+
+        <div class="form-card reveal">
+          <!--
+            Submissions are emailed via Web3Forms (free, works on static hosting like GitHub Pages).
+            1. Go to https://web3forms.com, enter the email address that should RECEIVE enquiries.
+            2. Paste the access key they send you into the access_key value below.
+          -->
+          <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <p class="form-title">Tell us about <em>you.</em></p>
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="traffic_source" value="">
+            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+            <div class="hp" aria-hidden="true"><label>Leave blank <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required>
+                <div class="field-error">Please enter your name.</div>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+                <div class="field-error">Please enter a valid email.</div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="phone">Phone <span class="opt">(optional)</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+              </div>
+              <div class="field">
+                <label for="role">Role &amp; company <span class="opt">(optional)</span></label>
+                <input id="role" name="role" type="text" autocomplete="organization-title">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="linkedin">LinkedIn profile <span class="opt">(optional)</span></label>
+              <input id="linkedin" name="linkedin" type="url" inputmode="url" placeholder="https://www.linkedin.com/in/…">
+              <div class="field-error">Please enter a full URL, starting with https://</div>
+            </div>
+
+            <fieldset class="field" style="border:0;padding:0;margin:0 0 26px">
+              <span class="label" id="interest-label">I'm interested in</span>
+              <div class="chips" role="radiogroup" aria-labelledby="interest-label">
+                <label class="chip"><input type="radio" name="interest" value="Executive coaching" required><span>Executive coaching</span></label>
+                <label class="chip"><input type="radio" name="interest" value="Career transition"><span>Career transition</span></label>
+                <label class="chip"><input type="radio" name="interest" value="Leadership development"><span>Leadership development</span></label>
+                <label class="chip"><input type="radio" name="interest" value="Team / organisation"><span>For my team</span></label>
+                <label class="chip"><input type="radio" name="interest" value="Not sure yet"><span>Not sure yet</span></label>
+              </div>
+              <div class="field-error">Please choose an option.</div>
+            </fieldset>
+
+            <div class="field">
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" rows="4" required placeholder="A few lines about where you are and what you'd like to change."></textarea>
+              <div class="field-error">Please add a short message.</div>
+            </div>
+
+            <div class="form-foot">
+              <small>Your details are used only to respond to your enquiry and are never shared.</small>
+              <button type="submit" class="btn btn-accent">
+                Send message
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <div class="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <p>Confidential, one-to-one coaching for leaders who are ready for what's next.</p>
+        <div class="footer-links">
+          <a href="index.html">What we do</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a class="social" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="GRS Coaching on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+      <div class="footer-word" aria-hidden="true">GRS<span>.</span></div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> GRS Coaching. All rights reserved.</span>
+        <span>Executive &amp; career coaching</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
