@@ -84,27 +84,22 @@
     e.preventDefault();
     if (!validate()) return;
 
-    const key = form.querySelector('[name="access_key"]').value;
-    if (!key || key.startsWith("YOUR_")) {
-      showStatus("err", "The form isn't connected yet — add your Web3Forms access key (see README).");
+    const endpoint = form.dataset.endpoint || "";
+    if (!endpoint.startsWith("https://script.google.com/")) {
+      showStatus("err", "The form isn't connected yet — add the Google Apps Script URL (see README).");
       return;
     }
 
-    const data = Object.fromEntries(new FormData(form));
-    data.subject = `New enquiry from ${data.name} — GRS Coaching`;
-    data.from_name = "GRS Coaching Website";
-    data.replyto = data.email;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
 
     button.disabled = true;
     const label = button.innerHTML;
     button.textContent = "Sending…";
 
     try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
-      });
+      // URL-encoded body keeps this a "simple" request, which Apps Script accepts cross-origin.
+      const res = await fetch(endpoint, { method: "POST", body: new URLSearchParams(formData) });
       const json = await res.json().catch(() => ({}));
       if (res.ok && json.success !== false) {
         form.innerHTML = `
