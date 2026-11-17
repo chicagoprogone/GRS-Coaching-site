@@ -44,8 +44,8 @@
   --radius-sm: 12px;
 }
 
-/* Navy bands: header, heroes, the big CTA panel, footer, preview gate */
-.site-header, .hero, .page-hero, .big-cta .container, .site-footer, .gate {
+/* Navy bands: header, heroes, the big CTA panel, footer */
+.site-header, .hero, .page-hero, .big-cta .container, .site-footer {
   --bg: var(--navy);
   --surface: var(--navy-raised);
   --surface-hi: var(--navy-raised);
@@ -111,7 +111,7 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 .eyebrow::before {
   content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
 }
-.site-header .eyebrow, .hero .eyebrow, .page-hero .eyebrow, .big-cta .eyebrow, .gate .eyebrow { color: var(--sky); }
+.site-header .eyebrow, .hero .eyebrow, .page-hero .eyebrow, .big-cta .eyebrow { color: var(--sky); }
 .lead { font-size: clamp(1.08rem, 1.6vw, 1.25rem); line-height: 1.6; color: var(--muted); max-width: 34em; }
 
 .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: 10px 16px; z-index: 200; }
