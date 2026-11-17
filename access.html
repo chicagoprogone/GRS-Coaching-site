@@ -5,24 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
   <title>Private preview — GRS Career Consulting</title>
-  <meta name="theme-color" content="#0b0c0f">
+  <meta name="theme-color" content="#0E1B2E">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=202611161900">
-  <script src="js/gate.js?v=202611161900"></script>
+  <link rel="stylesheet" href="css/styles.css?v=202611162100">
+  <script src="js/gate.js?v=202611162100"></script>
   <style>
     body { min-height: 100vh; min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
     .gate { position: relative; overflow: hidden; display: grid; place-items: center; padding: 32px var(--gutter) 56px; }
-    .gate::before {
-      content: ""; position: absolute; pointer-events: none; width: min(820px, 140vw); aspect-ratio: 1;
-      left: 50%; top: 50%; transform: translate(-30%, -70%);
-      background: radial-gradient(closest-side, rgba(212,242,90,.18), rgba(212,242,90,.04) 55%, transparent 72%);
-    }
     .gate::after {
       content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
-      background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1.2px); background-size: 28px 28px;
+      background-image: radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.2px); background-size: 28px 28px;
       mask-image: radial-gradient(60% 60% at 50% 40%, #000, transparent 75%);
       -webkit-mask-image: radial-gradient(60% 60% at 50% 40%, #000, transparent 75%);
     }
@@ -36,7 +31,7 @@
     .gate-error { min-height: 1.5em; margin-top: 12px; color: var(--error); font-size: .92rem; }
     .gate form.shake { animation: shake .4s; }
     @keyframes shake { 20%,60% { transform: translateX(-8px); } 40%,80% { transform: translateX(8px); } }
-    .gate-foot { padding: 20px var(--gutter) 28px; color: var(--dim); font-size: .85rem; text-align: center; }
+    .gate-foot { padding: 20px var(--gutter) 28px; background: var(--navy); color: var(--sky); font-size: .85rem; text-align: center; }
   </style>
 </head>
 <body>
