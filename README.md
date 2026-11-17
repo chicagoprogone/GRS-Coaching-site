@@ -5,23 +5,26 @@ Static site (plain HTML/CSS/JS, no build step). Works on GitHub Pages, Netlify, 
 ```
 index.html      What we do (home)
 about.html      About the executive
-contact.html    Contact form → email
+contact.html    Contact form → Google Sheet
 css/styles.css  All styling (colours/fonts are tokens at the top)
 js/main.js      Mobile menu, scroll effects, form submission
 assets/         favicon, headshot, LinkedIn share image
 ```
 
-## 1. Connect the contact form to an email address (2 minutes)
+## 1. Contact form → Google Sheet
 
-The form uses [Web3Forms](https://web3forms.com) — free (250 submissions/month), no server needed.
+Each enquiry becomes a new row on the **Enquiries** tab of the "GRS" Google Sheet
+(https://docs.google.com/spreadsheets/d/14XGwyv_ZvCiJitAZei-GWgYqLjcDzWx4dat8PkhXD9g), and a
+notification email goes to `NOTIFY_EMAIL` in `apps-script/Code.gs`.
 
-1. Go to https://web3forms.com and enter the email address that should **receive** enquiries.
-2. They email you an **access key**.
-3. In `contact.html`, replace `YOUR_WEB3FORMS_ACCESS_KEY` with that key.
+1. Open the sheet → **Extensions › Apps Script**. Replace the editor contents with `apps-script/Code.gs` and save.
+2. **Deploy › New deployment** → type **Web app** → Execute as **Me**, Who has access **Anyone** → Deploy, and approve the permissions prompt.
+3. Copy the **Web app URL** (`https://script.google.com/macros/s/…/exec`) into `contact.html` as the form's `data-endpoint`.
 
-Each enquiry arrives as an email with: name, email, phone, role, LinkedIn URL, interest, message, and
-`traffic_source` (e.g. `linkedin / social / spring-post` when the visitor came from a tagged LinkedIn link).
-Hitting **Reply** in your inbox replies straight to the person who filled in the form.
+After editing `Code.gs` later, use **Deploy › Manage deployments › Edit › New version** so the URL stays the same.
+
+Columns: timestamp, name, email, phone, role, LinkedIn URL, interest, message, and `traffic_source`
+(e.g. `linkedin / social / spring-post` when the visitor came from a tagged LinkedIn link).
 
 ## 2. Replace placeholder content
 
