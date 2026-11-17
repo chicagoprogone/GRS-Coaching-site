@@ -13,7 +13,8 @@
   --line-hi: rgba(255, 255, 255, .2);
   --text: #eceae4;
   --muted: #9a9890;
-  --dim: #6b6a65;
+  --dim: #8f8e88;           /* 4.5:1+ on every dark surface, incl. inputs */
+  --control-line: rgba(255, 255, 255, .4);  /* form/button borders: 3:1+ (WCAG 1.4.11) */
   --accent: #d4f25a;        /* chartreuse */
   --accent-ink: #0b0c0f;    /* text on accent */
   --light: #ecebe5;         /* contrast section */
@@ -100,7 +101,7 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 .btn:hover svg { transform: translateX(3px); }
 .btn-accent { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 0 0 rgba(212,242,90,.0); }
 .btn-accent:hover { box-shadow: 0 10px 40px -8px rgba(212,242,90,.55); }
-.btn-outline { background: transparent; color: var(--text); border-color: var(--line-hi); }
+.btn-outline { background: transparent; color: var(--text); border-color: var(--control-line); }
 .btn-outline:hover { border-color: var(--text); }
 
 /* ---------- Header ---------- */
@@ -132,7 +133,7 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 .nav .btn { margin-left: 10px; min-height: 44px; padding: 0 1.3em; background: var(--accent); color: var(--accent-ink); }
 
 .nav-toggle {
-  display: none; width: 46px; height: 46px; border: 1px solid var(--line-hi); border-radius: 50%;
+  display: none; width: 46px; height: 46px; border: 1px solid var(--control-line); border-radius: 50%;
   background: var(--surface); cursor: pointer; padding: 0;
 }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
@@ -202,7 +203,8 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
   position: absolute; right: var(--gutter); top: 0; z-index: 2;
   width: clamp(112px, 12vw, 156px); aspect-ratio: 1; text-decoration: none; color: var(--muted);
 }
-.badge svg.ring { width: 100%; height: 100%; animation: spin 20s linear infinite; }
+.badge svg.ring { width: 100%; height: 100%; animation: spin 20s linear infinite paused; }
+.badge:hover svg.ring, .badge:focus-visible svg.ring { animation-play-state: running; }
 .badge .core {
   position: absolute; inset: 25%; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
   display: grid; place-items: center; transition: transform .3s, box-shadow .3s;
@@ -443,14 +445,14 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
 
 .field { margin-bottom: 20px; }
-.field label, .field .label { display: block; font: 600 .82rem/1 var(--font-body); color: var(--muted); margin-bottom: 10px; }
+.field label, .field .label { display: block; padding: 0; font: 600 .82rem/1 var(--font-body); color: var(--muted); margin-bottom: 10px; }
 .field label .opt { font-weight: 400; color: var(--dim); }
 .field label.chip { display: inline-block; font: inherit; color: inherit; margin: 0; }
 .field input, .field select, .field textarea {
   width: 100%; min-height: 52px; padding: 13px 16px;
   font: 500 16px/1.4 var(--font-body);  /* 16px prevents iOS zoom */
   color: var(--text); background: rgba(255,255,255,.04);
-  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  border: 1px solid var(--control-line); border-radius: var(--radius-sm);
   transition: border-color .2s, box-shadow .2s, background .2s;
   -webkit-appearance: none; appearance: none;
 }
@@ -466,7 +468,7 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip input { position: absolute; opacity: 0; pointer-events: none; }
 .chip span {
-  display: inline-block; padding: 11px 16px; border: 1px solid var(--line-hi); border-radius: 999px;
+  display: inline-block; padding: 11px 16px; border: 1px solid var(--control-line); border-radius: 999px;
   font-size: .93rem; font-weight: 600; cursor: pointer; transition: background .2s, color .2s, border-color .2s; user-select: none;
 }
 .chip span:hover { border-color: var(--text); }
@@ -486,6 +488,7 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 .form-status.err { color: var(--error); }
 
 .form-success { padding: 12px 0; }
+.form-success:focus { outline: none; }
 .form-success h3 { font-size: clamp(2rem, 4vw, 3rem); }
 .form-success p { color: var(--muted); margin: 0; }
 

@@ -10,12 +10,24 @@
       const open = document.body.classList.toggle("nav-open");
       toggle.setAttribute("aria-expanded", String(open));
     });
-    document.querySelectorAll(".nav a").forEach((a) =>
-      a.addEventListener("click", () => {
-        document.body.classList.remove("nav-open");
-        toggle.setAttribute("aria-expanded", "false");
-      })
-    );
+    const closeNav = (returnFocus) => {
+      document.body.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+      if (returnFocus) toggle.focus();
+    };
+    document.querySelectorAll(".nav a").forEach((a) => a.addEventListener("click", () => closeNav(false)));
+
+    // Keyboard: Escape closes the open menu; Tab cycles between the menu button and menu links.
+    document.addEventListener("keydown", (e) => {
+      if (!document.body.classList.contains("nav-open")) return;
+      if (e.key === "Escape") { closeNav(true); return; }
+      if (e.key !== "Tab") return;
+      const items = [toggle, ...document.querySelectorAll(".nav a")];
+      const i = items.indexOf(document.activeElement);
+      const next = e.shiftKey ? (i <= 0 ? items.length - 1 : i - 1) : (i === items.length - 1 ? 0 : i + 1);
+      e.preventDefault();
+      items[next].focus();
+    });
   }
 
   /* Header border once scrolled */
@@ -63,12 +75,29 @@
   const status = form.querySelector(".form-status");
   const button = form.querySelector('button[type="submit"]');
 
+  // Give each error message an id so invalid inputs can point to it (read out by screen readers).
+  form.querySelectorAll(".field-error").forEach((err, i) => { if (!err.id) err.id = "field-error-" + i; });
+
+  const setInvalid = (field, invalid) => {
+    if (!field) return;
+    field.classList.toggle("invalid", invalid);
+    const err = field.querySelector(".field-error");
+    field.querySelectorAll("input, select, textarea").forEach((el) => {
+      if (invalid) {
+        el.setAttribute("aria-invalid", "true");
+        if (err) el.setAttribute("aria-describedby", err.id);
+      } else {
+        el.removeAttribute("aria-invalid");
+        el.removeAttribute("aria-describedby");
+      }
+    });
+  };
+
   const validate = () => {
     let ok = true;
     form.querySelectorAll("[required]").forEach((input) => {
-      const field = input.closest(".field");
       const valid = input.checkValidity();
-      if (field) field.classList.toggle("invalid", !valid);
+      setInvalid(input.closest(".field"), !valid);
       if (!valid && ok) { input.focus(); ok = false; }
     });
     return ok;
@@ -76,7 +105,7 @@
   form.querySelectorAll("input, select, textarea").forEach((input) =>
     input.addEventListener("input", () => {
       const f = input.closest(".field");
-      if (f && f.classList.contains("invalid") && input.checkValidity()) f.classList.remove("invalid");
+      if (f && f.classList.contains("invalid") && input.checkValidity()) setInvalid(f, false);
     })
   );
 
@@ -103,12 +132,14 @@
       const json = await res.json().catch(() => ({}));
       if (res.ok && json.success !== false) {
         form.innerHTML = `
-          <div class="form-success">
+          <div class="form-success" tabindex="-1">
             <span class="eyebrow">Message sent</span>
             <h3>Thank you, <em class="serif">${escapeHtml(data.name.split(" ")[0])}.</em></h3>
             <p>Your message is on its way. Expect a personal reply within one business day.</p>
           </div>`;
-        form.scrollIntoView({ behavior: "smooth", block: "center" });
+        const done = form.querySelector(".form-success");
+        done.focus({ preventScroll: true });  // screen readers read the confirmation
+        done.scrollIntoView({ behavior: "smooth", block: "center" });
       } else {
         throw new Error(json.message || "Request failed");
       }
