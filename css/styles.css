@@ -562,3 +562,25 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
   padding: 7px 11px; border-radius: 999px; background: var(--navy); color: var(--white); width: fit-content;
 }
 .big-cta p.cta-note { margin-top: 12px; color: var(--text); font-weight: 600; }
+
+/* How we work: 3 steps, coaching areas, flexible engagement */
+.section-head p + p { margin-top: .9em; }
+.steps-3 { grid-template-columns: repeat(3, 1fr); }
+.steps-3 .step p + p { margin-top: .8em; }
+.steps-3 .step strong { color: var(--navy); }
+@media (max-width: 960px) { .steps-3 { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .steps-3 .step { display: block; } .steps-3 .step::before { margin-bottom: 18px; } }
+.areas { margin-top: clamp(40px, 6vw, 64px); }
+.areas h3 { font-size: 1.3rem; margin-bottom: 18px; }
+.areas-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 0; }
+.areas-list > div { background: var(--white); border-radius: var(--radius-sm); padding: 20px 22px; }
+.areas-list dt { font: 700 1.08rem/1.25 var(--font-display); letter-spacing: -0.01em; color: var(--navy); margin-bottom: .4em; }
+.areas-list dd { margin: 0; color: var(--slate); font-size: .95rem; }
+.flex-engagement {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(20px, 4vw, 64px); align-items: start;
+  margin-top: clamp(40px, 6vw, 64px); padding-top: clamp(28px, 4vw, 40px); border-top: 1px solid var(--line);
+}
+.flex-engagement h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin: 0; }
+.flex-engagement p { margin: 0; color: var(--navy); }
+.flex-engagement p + p { margin-top: .9em; }
+@media (max-width: 860px) { .flex-engagement { grid-template-columns: 1fr; } }
