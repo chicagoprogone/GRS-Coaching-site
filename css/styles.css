@@ -519,6 +519,7 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 .hero h1 .line { overflow: hidden; padding-bottom: .16em; margin-bottom: -.12em; }
 .hero h1 .line > span { display: inline-block; animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
 .hero h1 .line:nth-child(2) > span { animation-delay: .1s; }
+.philosophy-intro:last-child { margin-bottom: 0; }
 @keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
 
 /* ---------- Coaching philosophy (six steps) ---------- */
