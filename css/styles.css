@@ -585,3 +585,7 @@ h1 em, h2 em, h3 em, .serif { font-style: normal; color: var(--accent); }
 .flex-engagement p { margin: 0; color: var(--navy); }
 .flex-engagement p + p { margin-top: .9em; }
 @media (max-width: 860px) { .flex-engagement { grid-template-columns: 1fr; } }
+
+/* Formerly inline styles (moved here so the Content-Security-Policy needs no 'unsafe-inline') */
+.about-actions { margin-top: 2.2rem; display: flex; gap: 14px; flex-wrap: wrap; }
+.field-group { border: 0; padding: 0; margin: 0 0 26px; }

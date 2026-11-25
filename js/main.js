@@ -141,10 +141,12 @@
         done.focus({ preventScroll: true });  // screen readers read the confirmation
         done.scrollIntoView({ behavior: "smooth", block: "center" });
       } else {
-        throw new Error(json.message || "Request failed");
+        const e = new Error("Request failed");
+        if (typeof json.message === "string") e.serverMessage = json.message.slice(0, 200);
+        throw e;
       }
     } catch (err) {
-      showStatus("err", "Sorry — something went wrong sending your message. Please try again, or email us directly.");
+      showStatus("err", (err && err.serverMessage) || "Sorry — something went wrong sending your message. Please try again, or email us directly.");
       button.disabled = false;
       button.innerHTML = label;
     }

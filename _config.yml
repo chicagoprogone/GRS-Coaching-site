@@ -1,0 +1,6 @@
+# GitHub Pages (Jekyll) build settings.
+# Keep backend source and internal docs off the public website.
+exclude:
+  - apps-script/
+  - README.md
+  - _archive-*/
