@@ -22,15 +22,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=202611250900">
+  <link rel="stylesheet" href="css/styles.css?v=202611251200">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="index.html" aria-label="GRS Career Coaching home">
-        <span class="brand-word">GRS</span><span class="brand-dot"></span><span class="brand-sub">career coaching</span>
+      <a class="brand" href="index.html">
+        <span class="brand-word">GRS</span><span class="brand-dot" aria-hidden="true"></span><span class="sr-only"> </span><span class="brand-sub">career coaching</span><span class="sr-only"> home</span>
       </a>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span></button>
       <nav class="nav" id="site-nav" aria-label="Main">
@@ -41,12 +41,12 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="page-hero">
       <div class="container">
         <span class="eyebrow">About Glenn</span>
         <h1>Meet <em>Glenn Sherling.</em></h1>
-        <p class="lead">Executive &amp; Career Coach &nbsp;|&nbsp; Leadership Development &nbsp;|&nbsp; Business Leader</p>
+        <p class="lead">Executive &amp; Career Coach <span aria-hidden="true">&nbsp;|&nbsp;</span><span class="sr-only">,</span> Leadership Development <span aria-hidden="true">&nbsp;|&nbsp;</span><span class="sr-only">,</span> Business Leader</p>
       </div>
     </section>
 
@@ -70,7 +70,7 @@
 
           <p class="about-actions">
             <a href="contact.html" class="btn btn-accent">Book a conversation
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </p>
         </div>
@@ -82,11 +82,11 @@
     <div class="container">
       <div class="footer-top">
         <p>Discover your potential. Define your direction. Drive your future.</p>
-        <div class="footer-links">
+        <nav class="footer-links" aria-label="Footer">
           <a href="index.html">What we do</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
-        </div>
+        </nav>
       </div>
       <div class="footer-word" aria-hidden="true">GRS<span>.</span></div>
       <div class="footer-bottom">
@@ -96,6 +96,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611250900"></script>
+  <script src="js/main.js?v=202611251200"></script>
 </body>
 </html>

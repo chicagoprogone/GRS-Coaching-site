@@ -28,6 +28,11 @@
       e.preventDefault();
       items[next].focus();
     });
+
+    // If the window widens past the mobile breakpoint, close the menu so the Tab loop above lets go.
+    const desktop = window.matchMedia("(min-width: 821px)");
+    const onBreakpoint = () => { if (desktop.matches && document.body.classList.contains("nav-open")) closeNav(false); };
+    if (desktop.addEventListener) desktop.addEventListener("change", onBreakpoint);
   }
 
   /* Header border once scrolled */
@@ -95,7 +100,8 @@
 
   const validate = () => {
     let ok = true;
-    form.querySelectorAll("[required]").forEach((input) => {
+    // Check every visible field, not just required ones, so a malformed optional URL is flagged too.
+    form.querySelectorAll(".field input, .field textarea, .field select").forEach((input) => {
       const valid = input.checkValidity();
       setInvalid(input.closest(".field"), !valid);
       if (!valid && ok) { input.focus(); ok = false; }
@@ -125,6 +131,7 @@
     button.disabled = true;
     const label = button.innerHTML;
     button.textContent = "Sending…";
+    showStatus("pending", "Sending your message…");  // announced by the role="status" region
 
     try {
       // URL-encoded body keeps this a "simple" request, which Apps Script accepts cross-origin.
@@ -139,7 +146,8 @@
           </div>`;
         const done = form.querySelector(".form-success");
         done.focus({ preventScroll: true });  // screen readers read the confirmation
-        done.scrollIntoView({ behavior: "smooth", block: "center" });
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        done.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
       } else {
         const e = new Error("Request failed");
         if (typeof json.message === "string") e.serverMessage = json.message.slice(0, 200);
