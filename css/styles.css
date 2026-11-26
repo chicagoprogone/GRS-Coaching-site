@@ -605,6 +605,9 @@ main:focus { outline: none; }  /* skip-link target; not an interactive control *
 .about-actions { margin-top: 2.2rem; display: flex; gap: 14px; flex-wrap: wrap; }
 .field-group { border: 0; padding: 0; margin: 0 0 26px; }
 
+/* Fraunces' ampersand reads like "@": wrap "&" in serif text with <span class="amp"> */
+.amp { font-family: var(--font-body); font-weight: 600; }
+
 /* ---------- Testimonials carousel ---------- */
 .carousel { max-width: 980px; margin: 0 auto; }
 .carousel-viewport { overflow: hidden; border-radius: var(--radius); }
@@ -615,6 +618,7 @@ main:focus { outline: none; }  /* skip-link target; not an interactive control *
   padding: clamp(28px, 5vw, 64px); height: 100%;
 }
 .testimonial p { font: 500 clamp(1.1rem, 1.9vw, 1.4rem)/1.5 var(--font-display); letter-spacing: -0.015em; color: var(--text); margin: 0 0 1.4em; }
+
 .testimonial footer { display: flex; flex-direction: column; gap: 2px; }
 .testimonial cite { font-style: normal; font-weight: 700; color: var(--text); }
 .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 28px; }
