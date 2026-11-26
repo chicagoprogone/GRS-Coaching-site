@@ -605,12 +605,46 @@ main:focus { outline: none; }  /* skip-link target; not an interactive control *
 .about-actions { margin-top: 2.2rem; display: flex; gap: 14px; flex-wrap: wrap; }
 .field-group { border: 0; padding: 0; margin: 0 0 26px; }
 
+/* ---------- Testimonials carousel ---------- */
+.carousel { max-width: 980px; margin: 0 auto; }
+.carousel-viewport { overflow: hidden; border-radius: var(--radius); }
+.carousel-track { display: flex; list-style: none; margin: 0; padding: 0; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.testimonial { flex: 0 0 100%; min-width: 0; }
+.testimonial blockquote {
+  margin: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(28px, 5vw, 64px); height: 100%;
+}
+.testimonial p { font: 500 clamp(1.1rem, 1.9vw, 1.4rem)/1.5 var(--font-display); letter-spacing: -0.015em; color: var(--text); margin: 0 0 1.4em; }
+.testimonial footer { display: flex; flex-direction: column; gap: 2px; }
+.testimonial cite { font-style: normal; font-weight: 700; color: var(--text); }
+.carousel-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 28px; }
+.carousel-btn {
+  width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--control-line); background: var(--white);
+  color: var(--text); display: inline-grid; place-items: center; cursor: pointer; transition: background .2s, color .2s, border-color .2s;
+}
+.carousel-btn svg { width: 20px; height: 20px; }
+.carousel-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.carousel-dots { display: flex; gap: 4px; }
+.carousel-dot { width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.carousel-dot::before { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--control-line); transition: background .2s, width .2s; }
+.carousel-dot[aria-current="true"]::before { background: var(--accent); border-color: var(--accent); width: 22px; border-radius: 6px; }
+@media (max-width: 480px) {
+  .carousel-controls { gap: 8px; }
+  .carousel-dots { gap: 0; }
+  .carousel-dot { width: 20px; }
+  .carousel-dot[aria-current="true"]::before { width: 16px; }
+}
+.no-js .carousel-track { flex-direction: column; gap: 16px; }
+.no-js .carousel-controls { display: none; }
+
 /* ---------- Windows High Contrast / forced colors ---------- */
 @media (forced-colors: active) {
   .nav-toggle span::before, .nav-toggle span::after,
   .nav-toggle span { forced-color-adjust: none; background: CanvasText; }
   .nav-open .nav-toggle span { background: transparent; }
   .chip input:checked + span { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
-  .btn, .chip span, .service-arrow, .footer-links a, .eyebrow { border: 1px solid ButtonText; }
+  .btn, .chip span, .service-arrow, .footer-links a, .eyebrow, .carousel-btn { border: 1px solid ButtonText; }
+  .carousel-dot::before { forced-color-adjust: none; border-color: CanvasText; }
+  .carousel-dot[aria-current="true"]::before { background: Highlight; }
   .brand-dot, .eyebrow::before, .badge .core { forced-color-adjust: none; background: CanvasText; color: Canvas; }
 }

@@ -54,6 +54,65 @@
     els.forEach((el) => el.classList.add("in"));
   }
 
+  /* Testimonials carousel: prev/next buttons, dots, arrow keys, swipe. No autoplay. */
+  document.querySelectorAll(".carousel").forEach((carousel) => {
+    const track = carousel.querySelector(".carousel-track");
+    const slides = [...carousel.querySelectorAll(".testimonial")].slice(0, 10);  // max 10 slides
+    carousel.querySelectorAll(".testimonial").forEach((s, i) => { if (i >= 10) s.remove(); });
+    const dotsWrap = carousel.querySelector(".carousel-dots");
+    const live = carousel.querySelector(".carousel-live");
+    let index = 0;
+
+    slides.forEach((s, i) => {
+      s.setAttribute("role", "group");
+      s.setAttribute("aria-roledescription", "slide");
+      s.setAttribute("aria-label", `${i + 1} of ${slides.length}`);
+    });
+    // A single testimonial needs no controls.
+    if (slides.length < 2) { carousel.querySelector(".carousel-controls").hidden = true; return; }
+
+    const dots = slides.map((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "carousel-dot";
+      b.setAttribute("aria-label", `Show testimonial ${i + 1} of ${slides.length}`);
+      b.addEventListener("click", () => go(i));
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function go(i, announce = true) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      slides.forEach((s, n) => {
+        const hidden = n !== index;
+        s.setAttribute("aria-hidden", String(hidden));
+        s.inert = hidden;
+      });
+      dots.forEach((d, n) => d.setAttribute("aria-current", String(n === index)));
+      if (announce && live) live.textContent = `Testimonial ${index + 1} of ${slides.length}`;
+    }
+
+    carousel.querySelectorAll(".carousel-btn").forEach((b) =>
+      b.addEventListener("click", () => go(index + Number(b.dataset.dir)))
+    );
+    carousel.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); go(index + 1); }
+    });
+
+    let startX = null;
+    track.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener("touchend", (e) => {
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    });
+
+    go(0, false);
+  });
+
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
